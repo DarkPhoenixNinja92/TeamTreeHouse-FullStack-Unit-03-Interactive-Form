@@ -54,4 +54,31 @@ activities.addEventListener('change', (e) => {
     };  
 
 totalVal.innerHTML = `Total: $${totalCost}`;
+});
+
+const selectPayment = document.querySelector(".payment-methods");
+const paymentSelect = document.getElementById('payment');
+const paypal = document.getElementById('paypal');
+const bitcoin = document.getElementById('bitcoin');
+
+paymentSelect.selected = true;
+paypal.hidden = true;
+bitcoin.hidden = true;
+
+selectPayment.addEventListener('change',(e) => {
+    const card = document.getElementById('credit-card');
+    const payment = e.target.value;
+    if(payment === 'paypal') {
+        paypal.hidden = false;
+        card.hidden = true;
+        bitcoin.hidden = true;
+    } else if(payment === 'bitcoin') {
+        bitcoin.hidden = false;
+        paypal.hidden = true;
+        card.hidden = true;
+    } else {
+        card.hidden = false;
+        paypal.hidden = true;
+        bitcoin.hidden = true;
+    }
 })
