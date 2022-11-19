@@ -4,6 +4,9 @@ const otherRole = document.querySelector('input[name="other-job-role"]');
 const shirtDesign = document.getElementById('design');
 const shirtColor = document.getElementById('color');
 const colorOptions = document.querySelectorAll('#color option');
+const checkboxes = document.querySelectorAll("input[type='checkbox']");
+const activities = document.querySelector(".activities");
+let totalCost = 0;
 
 nameInput.focus();
 otherRole.style.opacity = '0';
@@ -36,3 +39,19 @@ shirtDesign.addEventListener('change', (event) => {
         }
     }
 });
+
+activities.addEventListener('change', (e) => {
+    const selected = e.target;
+    const clickedCost = selected.getAttribute('data-cost');
+    const valClick = parseInt(clickedCost);
+    const totalVal = document.querySelector(".activities-cost");
+    const clickedDayAndTime = selected.getAttribute("data-day-and-time");
+
+    if(selected.checked){
+        totalCost += valClick;      
+      }else{
+       totalCost -= valClick;
+    };  
+
+totalVal.innerHTML = `Total: $${totalCost}`;
+})
