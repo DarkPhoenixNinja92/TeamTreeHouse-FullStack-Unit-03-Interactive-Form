@@ -15,3 +15,24 @@ jobRole.addEventListener('change', (e) => {
         otherRole.style.opacity = '0';
     }
 });
+
+shirtColor.disabled = true;
+
+shirtDesign.addEventListener('change', (event) => {
+    shirtColor.disabled = false;
+    const selectDesign = event.target.value;
+    if(selectDesign == 'js puns') {
+        colorOptions[1].selected = true;
+    } else if(selectDesign == 'heart js') {
+        colorOptions[4].selected = true;
+    }
+
+    for(let i = 1; i < colorOptions.length; i++) {
+        const theme = colorOptions[i].getAttribute('data-theme');
+        if(selectDesign === theme) {
+            colorOptions[i].hidden = false;
+        } else {
+            colorOptions[i].hidden = true;
+        }
+    }
+});
