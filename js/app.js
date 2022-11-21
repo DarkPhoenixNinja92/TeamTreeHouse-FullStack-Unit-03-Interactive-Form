@@ -1,4 +1,5 @@
 const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
 const jobRole = document.querySelector('select[name="user-title"]')
 const otherRole = document.querySelector('input[name="other-job-role"]');
 const shirtDesign = document.getElementById('design');
@@ -6,6 +7,10 @@ const shirtColor = document.getElementById('color');
 const colorOptions = document.querySelectorAll('#color option');
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
 const activities = document.querySelector(".activities");
+const cardNum = document.getElementById('cc-num');
+const zipCode = document.getElementById('zip');
+const cvv = document.getElementById('cvv');
+const form = document.querySelector('form');
 let totalCost = 0;
 
 nameInput.focus();
@@ -81,4 +86,49 @@ selectPayment.addEventListener('change',(e) => {
         paypal.hidden = true;
         bitcoin.hidden = true;
     }
-})
+});
+
+function nameValidityCheck() {
+    const nameVal = nameInput.value;
+    const nameTest = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameVal);
+    if(nameTest) {
+        isValid(nameInput);
+    } else {
+        notValid(nameInput);
+    }
+    return nameTest;
+}
+
+function emailValidityCheck() {
+    
+}
+
+function cardNumValidityCheck() {
+    
+}
+
+function zipCodeValidityCheck() {
+    
+}
+
+function cvvNumValidityCheck() {
+    
+}
+
+function isValid(e) {
+    e.parentElement.classList.add('valid');
+    e.parentElement.classList.remove('not-valid');
+    e.parentElement.lastElementChild.style.display = 'none';
+
+}
+
+function notValid(e) {
+    e.parentElement.classList.add('not-valid');
+    e.parentElement.classList.remove('valid');
+    e.parentElement.lastElementChild.style.display = 'block';
+
+}
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+});
