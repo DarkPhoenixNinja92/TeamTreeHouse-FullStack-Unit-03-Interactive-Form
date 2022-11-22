@@ -93,42 +93,98 @@ function nameValidityCheck() {
     const nameTest = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameVal);
     if(nameTest) {
         isValid(nameInput);
+        console.log(nameTest);
     } else {
         notValid(nameInput);
+        console.log(nameTest);
     }
     return nameTest;
 }
 
 function emailValidityCheck() {
-    
+    const emailVal = emailInput.value;
+    const emailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailVal);
+    if(emailTest) {
+        isValid(emailVal);
+        console.log(emailTest);
+    } else {
+        notValid(emailVal);
+        console.log(emailTest);
+    }
+    return emailTest;
 }
 
 function cardNumValidityCheck() {
-    
+    const cardVal = cardNum.value;
+    const cardTest = /\d{16}?$/.test(cardVal);
+    if(card) {
+    if(cardTest) {
+        isValid(cardVal);
+        console.log(cardTest);
+    } else {
+        notValid(cardVal);
+        console.log(cardTest);
+    }
+    return cardTest;
+}
 }
 
 function zipCodeValidityCheck() {
-    
+    const zipVal = zipCode.value;
+    const zipTest = /^\d{5}$/.test(zipVal);
+    if(zipTest) {
+        isValid(zipVal);
+        console.log(zipTest)
+    } else {
+        notValid(zipVal);
+        console.log(zipTest);
+    }
+    return zipTest;
 }
 
 function cvvNumValidityCheck() {
-    
+    const cvvVal = cvv.value;
+    const cvvTest = /^\d{3}$/.test(cvvVal);
+    if(cvvTest) {
+        isValid(cvvVal);
+        console.log(cvvTest);
+    } else {
+        notValid(cvvVal);
+        console.log(cvvTest);
+    }
+    return cvvTest;
 }
 
-function isValid(e) {
-    e.parentElement.classList.add('valid');
-    e.parentElement.classList.remove('not-valid');
-    e.parentElement.lastElementChild.style.display = 'none';
-
+function isValid(formInput) {
+    formInput.parentElement.classList.remove('not-valid');
+    formInput.parentElement.classList.add('valid');
+    formInput.parentElement.lastElementChild.style.display = '';
 }
 
-function notValid(e) {
-    e.parentElement.classList.add('not-valid');
-    e.parentElement.classList.remove('valid');
-    e.parentElement.lastElementChild.style.display = 'block';
-
+function notValid(formInput) {
+    formInput.parentElement.classList.remove('valid');
+    formInput.parentElement.classList.add('not-valid');
+    formInput.parentElement.lastElementChild.style.display = 'block';
 }
 
 form.addEventListener('submit', (event) => {
-    event.preventDefault();
+    if(!nameValidityCheck()) {
+        event.preventDefault();
+    }
+
+    if(!emailValidityCheck()) {
+        event.preventDefault();
+    }
+
+    if(!cardNumValidityCheck()) {
+        event.preventDefault();
+    }
+
+    if(!zipCodeValidityCheck()) {
+        event.preventDefault();
+    }
+
+    if(!cvvNumValidityCheck()) {
+        event.preventDefault();
+    }
 });
