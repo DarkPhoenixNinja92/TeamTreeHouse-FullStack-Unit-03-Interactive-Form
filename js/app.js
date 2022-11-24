@@ -51,6 +51,17 @@ activities.addEventListener('change', (e) => {
     const valClick = parseInt(clickedCost);
     const totalVal = document.querySelector(".activities-cost");
     const clickedDayAndTime = selected.getAttribute("data-day-and-time");
+    checkboxes.forEach(box => {
+        const boxDayAndTime = box.getAttribute('data-day-and-time');
+        if(selected.checked && selected !== box && boxDayAndTime === clickedDayAndTime) {
+            box.disabled = true;
+            box.parentElement.classList.add('disabled');
+        }
+        if(!selected.selected && box.disabled && clickedDayAndTime === boxDayAndTime) {
+            box.disabled = false;
+            box.parentElement.classList.remove('disabled');
+        }
+    });
 
     if(selected.checked){
         totalCost += valClick;      
